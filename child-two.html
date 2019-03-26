@@ -1,0 +1,67 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../polymer/lib/elements/dom-if.html">
+
+<dom-module id="child-two">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <slot>
+
+      <template is="dom-if" if="[[hasList]]">
+        <ul>
+          <li>Uno</li>
+          <li>Dos</li>
+          <li>Tres</li>
+          <li>Cuatro</li>
+          <li>Cinco</li>
+        </ul>
+      </template>
+
+      <template is="dom-if" if="[[hasTable]]">
+        <table>
+          <thead>
+            <tr>
+              <th>Encabezado</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Valor</td>
+            </tr>
+          </tbody>
+        </table>
+      </template>
+    </slot>
+  </template>
+
+  <script>
+    /**
+     * `child-two`
+     * 
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class ChildTwo extends Polymer.Element {
+      static get is() { return 'child-two'; }
+      static get properties() {
+        return {
+          hasList: {
+            type: Boolean,
+            value: true
+          },
+          hasTable: {
+            type: Boolean,
+            value: false
+          }
+        };
+      }
+    }
+
+    window.customElements.define(ChildTwo.is, ChildTwo);
+  </script>
+</dom-module>
